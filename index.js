@@ -14,9 +14,18 @@ server.listen(3000); // lang nghe tai port 3000
 io.on("connection",function(socket){
     console.log("net noi moi: "+socket.id);
 
-    io.on("disconnection",function(socket){
+    socket.on("disconnect",function(socket){
     console.log(socket.id+" disconnection!");
     });
+
+    socket.on("Client-click",function(data){
+       console.log(data);
+     io.sockets.emit("Server-send","Server hello"); // send data to everyone
+     // socket.emit("",""); // echo lai client
+     // socket.broadcast.emit(); // gui cho tat ca cac thang khac tru client
+     // io.to("socketID").emit(); // gui cho mot may rieng 
+    });
+    
 }); 
 
 
